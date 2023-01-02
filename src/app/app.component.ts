@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-
+ 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+           <app-team></app-team>
+          `
 })
 export class AppComponent {
-  title = 'Creating-FormGroup-inside-FormGroup-in-Angular';
 }

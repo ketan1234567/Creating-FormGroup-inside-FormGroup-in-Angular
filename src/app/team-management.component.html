@@ -2,49 +2,56 @@
 <div class="team">
   <form [formGroup]="teamForm" (ngSubmit)="onFormSubmit()">
     <p><b>Team Name : </b> <input formControlName="teamName">
-      <label *ngIf="teamName?.hasError('required')" class="error">
+      <label *ngIf="(teamName==null || submitted)  && teamName?.hasError('required')" class="error">
         Team name required. </label>
+   
+        <label *ngIf="(teamName==null || submitted)  && teamName?.hasError('pattern')" class="error">
+          Team name pattern is not coming @ . </label>
+    
+        
     </p>
     <p><b>No. of Emp : </b> <input formControlName="noOfEmp">
-      <label *ngIf="teamName?.hasError('required')" class="error">
+      <label *ngIf="(noOfEmp==null || submitted) && noOfEmp?.hasError('required')" class="error">
         No. of Emp required. </label>
+        <label *ngIf="(noOfEmp==null || submitted) && noOfEmp?.hasError('min')" class="error">
+          No. of Emp  10 is required. </label>
     </p>
     <div formGroupName="teamLead" class="employee"> 
       <b>Team Lead:</b> 
       <p>Name  : <input formControlName="empName">
-        <label *ngIf="teamLead.get('empName')?.hasError('required')" class="error">
+        <label *ngIf="(teamLead==null || submitted) && teamLead.get('empName')?.hasError('required')" class="error">
           Name required. </label>
         </p>
       <p>Age : <input formControlName="age">
-        <label *ngIf="teamLead.get('age')?.hasError('required')" class="error">
+        <label *ngIf="(teamLead==null || submitted) && teamLead.get('age')?.hasError('required')" class="error">
           Age required. </label>
-        <label *ngIf="teamLead.get('age')?.hasError('min')" class="error">
+        <label *ngIf="(teamLead==null || submitted)  && teamLead.get('age')?.hasError('min')" class="error">
             Minimum age is 18. </label>
       </p>
       <p>City : <input formControlName="city">
-        <label *ngIf="teamLead.get('city')?.hasError('required')" class="error">
+        <label *ngIf="(teamLead==null || submitted) && teamLead.get('city')?.hasError('required')" class="error">
           City required. </label>
       </p>
     </div>
     <div formGroupName="department" class="employee"> 
       <b>Department:</b> 
       <p>Department Head : <input formControlName="deptHead">
-        <label *ngIf="department.get('deptHead')?.hasError('required')" class="error">
+        <label *ngIf="(department==null || submitted) && department.get('deptHead')?.hasError('required')" class="error">
           Department Head required. </label>
       </p>
       <p>Department Name : <input formControlName="deptName">
-        <label *ngIf="department.get('deptName')?.hasError('required')" class="error">
+        <label *ngIf="(department==null || submitted) && department.get('deptName')?.hasError('required')" class="error">
           Department Name required. </label>
       </p>
     </div>
     <div formGroupName="classification" class="employee"> 
       <b>Department Pricipal:</b> 
       <p>which darptment : <input formControlName="which_department">
-        <label *ngIf="classification.get('which_department')?.hasError('required')" class="error">
+        <label *ngIf="(classification==null || submitted)  && classification.get('which_department')?.hasError('required')" class="error">
           Department Head required. </label>
       </p>
       <p>Department principal Name : <input formControlName="Department_principal_Name">
-        <label *ngIf="classification.get('Department_principal_Name')?.hasError('required')" class="error">
+        <label *ngIf="(classification==null || submitted) && classification.get('Department_principal_Name')?.hasError('required')" class="error">
           Department Name required. </label>
       </p>
     </div>

@@ -8,15 +8,18 @@ import { TeamManagementService } from './team-management.service';
 })
 export class TeamManagementComponent implements OnInit {
 	data:any
+mull: any;
+	submitted: boolean;
 	constructor(
 		private formBuilder: FormBuilder ,
 		private teamMngService: TeamManagementService) {
 	}
 	ngOnInit() {
 	}
+   nameRegex='^[a-zA-Z][a-zA-Z0-9]*$';
 	teamForm = this.formBuilder.group({
-		teamName: ['', Validators.required],
-		noOfEmp: ['', Validators.required],
+		teamName: ['', [Validators.required, Validators.pattern(this.nameRegex)]],
+		noOfEmp: ['', [Validators.required, Validators.min(10)]],
 		teamLead: this.formBuilder.group({
 			empName: ['', Validators.required],
 			age: ['', [Validators.required, Validators.min(18)]],
@@ -27,6 +30,7 @@ export class TeamManagementComponent implements OnInit {
 			deptName: ['', Validators.required]
 		}),
 		classification: this.formBuilder.group({
+			
 			which_department: ['', Validators.required],
 			Department_principal_Name: ['', Validators.required]
 		})
@@ -47,6 +51,7 @@ export class TeamManagementComponent implements OnInit {
 		return this.teamForm.get('classification') as FormGroup;
 	}
 	onFormSubmit() {
+		this.submitted = true;
 		if (this.teamForm.valid) {
 			console.log(this.teamForm.value);
 		this.teamMngService.saveTeam(this.teamForm.value)
